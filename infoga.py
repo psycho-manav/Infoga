@@ -27,8 +27,6 @@ import socket
 import re
 import requests
 import urllib.parse as urlparse
-from core.lib import http
-from core.lib import parser
 from core.lib import colors
 from core.lib import printer
 from core.recon import google
