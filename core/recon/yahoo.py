@@ -19,25 +19,28 @@
 # along with Infoga; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-from core.lib import http 
+from core.lib import http
 from core.lib import parser
 
+
 class yahoo:
-	con = http.http()
-	def __init__(self,target):
-		self.target = target
-		self.results = ""
+    con = http.http()
 
-	def search(self):
-		try:
-			resp = self.con.httplib("search.yahoo.com","/search?p=\"%40"+self.target+"\"&b=500&pz=10")
-			self.results += resp
-		except Exception as error:
-			pass
+    def __init__(self, target):
+        self.target = target
+        self.results = ""
 
-	def getemail(self):
-		email = parser.parser(self.results,self.target)
-		return email.email()
+    def search(self):
+        try:
+            resp = self.con.httplib(
+                "search.yahoo.com", "/search?p=\"%40"+self.target+"\"&b=500&pz=10")
+            self.results += resp
+        except Exception as error:
+            pass
 
-	def process(self):
-		self.search()
+    def getemail(self):
+        email = parser.parser(self.results, self.target)
+        return email.email()
+
+    def process(self):
+        self.search()

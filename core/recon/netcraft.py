@@ -19,31 +19,34 @@
 # along with Infoga; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-from core.lib import http 
+from core.lib import http
 from core.lib import printer
-import re 
+import re
+
 
 class netcraft:
-	con = http.http()
-	printf = printer.printer()
-	def __init__(self,target):
-		self.target = target
+    con = http.http()
+    printf = printer.printer()
 
-	def search(self):
-		self.printf.test("Searching \"%s\" hostnames..."%(self.target))
-		try:
-			url = "http://searchdns.netcraft.com/?restriction=site+contains&host=%s&lookup=wait..&position=limited"%(self.target)
-			resp = self.con.urllib(url,None)
-			if resp:
-				sites = re.findall('url=\S+"',resp,re.I)
-				if sites:
-					self.printf.plus("Found %s sites"%(len(sites)))
-					print ""
-					for x in range(len(sites)):
-						host = sites[x].split('"')[0]
-						print " - %s"%(host.split("url=")[1])
-					print ""
-				else:
-					self.printf.error("Not found hostnames")
-		except Exception as error:
-			pass
+    def __init__(self, target):
+        self.target = target
+
+    def search(self):
+        self.printf.test("Searching \"%s\" hostnames..." % (self.target))
+        try:
+            url = "http://searchdns.netcraft.com/?restriction=site+contains&host=%s&lookup=wait..&position=limited" % (
+                self.target)
+            resp = self.con.urllib(url, None)
+            if resp:
+                sites = re.findall('url=\S+"', resp, re.I)
+                if sites:
+                    self.printf.plus("Found %s sites" % (len(sites)))
+                    print("")
+                    for x in range(len(sites)):
+                        host = sites[x].split('"')[0]
+                        print(" - %s" % (host.split("url=")[1]))
+                    print("")
+                else:
+                    self.printf.error("Not found hostnames")
+        except Exception as error:
+            pass

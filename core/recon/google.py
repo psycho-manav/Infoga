@@ -19,26 +19,28 @@
 # along with Infoga; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
-from core.lib import http 
+from core.lib import http
 from core.lib import parser
 
+
 class google:
-	con = http.http()
-	def __init__(self,target):
-		self.target = target
-		self.results = ""
+    con = http.http()
 
-	def search(self):
-		try:
-			url = "http://www.google.com/search?num=500&start=50&hl=en&meta=&q=%40\""+self.target+"\""
-			resp = self.con.request(url)
-			self.results += resp
-		except Exception as error:
-			pass
+    def __init__(self, target):
+        self.target = target
+        self.results = ""
 
-	def getemail(self):
-		email = parser.parser(self.results,self.target)
-		return email.email()
+    def search(self):
+        try:
+            url = "http://www.google.com/search?num=500&start=50&hl=en&meta=&q=%40\""+self.target+"\""
+            resp = self.con.request(url)
+            self.results += resp
+        except Exception as error:
+            pass
 
-	def process(self):
-		self.search()
+    def getemail(self):
+        email = parser.parser(self.results, self.target)
+        return email.email()
+
+    def process(self):
+        self.search()

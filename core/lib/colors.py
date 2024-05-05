@@ -22,20 +22,20 @@
 
 class colors:
 
-	def red(self,num):
-		return "\033["+str(num)+";31m"
+    def red(self, num):
+        return "\033["+str(num)+";31m"
 
-	def green(self,num):
-		return "\033["+str(num)+";32m"
+    def green(self, num):
+        return "\033["+str(num)+";32m"
 
-	def yellow(self,num):
-		return "\033["+str(num)+";33m"
+    def yellow(self, num):
+        return "\033["+str(num)+";33m"
 
-	def white(self,num):
-		return "\033["+str(num)+";38m"
+    def white(self, num):
+        return "\033["+str(num)+";38m"
 
-	def reset(self):
-		return "\033[0m"
+    def reset(self):
+        return "\033[0m"
 
-	def blue(self,num):
-		return "\033["+str(num)+";34m"
+    def blue(self, num):
+        return "\033["+str(num)+";34m"
